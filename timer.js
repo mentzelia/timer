@@ -17,15 +17,15 @@ var reservation= document.getElementById("reservation");
     };
     
     if(compteurMinute===0 && compteurSeconde===0) {
-                        clearInterval(setCompteur);
+                        clearInterval(setInterval(decompterSeconde,1000));
                         reservation.textContent= "Votre réservation a expirée."
     };
  };
 
 
- var setCompteur= setInterval(decompterSeconde,1000);
+setInterval(decompterSeconde,1000);
 
 
-   
-    
+
  
+
