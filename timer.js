@@ -1,23 +1,23 @@
-var ElementHtmlSeconde = document.getElementById("timerSeconde");
-var ElementHtmlMinute = document.getElementById("timerMinute");
+var elementHtmlSeconde = document.getElementById("timerSeconde");
+var elementHtmlMinute = document.getElementById("timerMinute");
+var reservation= document.getElementById("reservation");
 
 
  function decompterSeconde() {    
-    var compteurSeconde = Number(ElementHtmlSeconde.textContent);
-    var compteurMinute = Number(ElementHtmlMinute.textContent);
+    var compteurSeconde = Number(elementHtmlSeconde.textContent);
+    var compteurMinute = Number(elementHtmlMinute.textContent);
     
     if (compteurSeconde>0) {
-        ElementHtmlSeconde.textContent= compteurSeconde-1;
+        elementHtmlSeconde.textContent= compteurSeconde-1;
     } else {
         if(compteurSeconde===0) {
-            ElementHtmlSeconde.textContent= compteurSeconde+59;
-            ElementHtmlMinute.textContent= compteurMinute-1;
+            elementHtmlSeconde.textContent= compteurSeconde+59;
+            elementHtmlMinute.textContent= compteurMinute-1;
         } 
     };
     
     if(compteurMinute===0 && compteurSeconde===0) {
                         clearInterval(setCompteur);
-                        var reservation= document.getElementById("reservation");
                         reservation.textContent= "Votre réservation a expirée."
     };
  };
@@ -25,5 +25,7 @@ var ElementHtmlMinute = document.getElementById("timerMinute");
 
  var setCompteur= setInterval(decompterSeconde,1000);
 
+
+   
+    
  
-  
