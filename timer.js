@@ -1,16 +1,57 @@
-var Timer = {
-    elementHtmlSeconde: null,
-    elementHtmlMinute: null,
-    reservation: null,
-    
-    init: function(elementHtmlSeconde, elementHtmlMinute, reservation) {
+//Objet reservation
+var Reservation= {
+    init: function(elementHtmlSection) {
+        this.elementHtmlSection = elementHtmlSection;
+        this.ajoutElement();
+    },
+
+    ajoutElement: function() {
+        var New = document.createElement("p");
+        New.id = "reservation";
+        New.textContent = "Votre réservation expire dans ";
+        this.elementHtmlSection.appendChild(New);
+    },
+} ;
+
+//Creation objet
+var elementHtmlSection = document.getElementById("timer"); 
+var reservation1 = Object.create(Reservation);
+reservation1.init(elementHtmlSection);
+                                             
+
+
+
+
+                                          
+//Objet timer
+var Timer = {    
+    init: function() {
+        this.elementHtmlP = elementHtmlP;
         this.elementHtmlSeconde = elementHtmlSeconde;
         this.elementHtmlMinute = elementHtmlMinute;
-        this.reservation = reservation;  
         
+        
+        this.ajoutMinuteDom();
+        this.ajoutSecondeDom();
         this.decompterSeconde();
         this.intervalRecurrent();
         
+    },
+    
+    ajoutMinuteDom: function() {
+        var New = document.createElement("span");
+        New.id = "timerMinute";
+        New.textContent = "20";
+        this.elementHtmlP.appendChild(New);
+        this.elementHtmlP.insertAdjacentHTML("beforeend", " minutes et ");
+    },
+    
+    ajoutSecondeDom: function() {
+        var New = document.createElement("span");
+        New.id = "timerSeconde";
+        New.textContent = "0";
+        this.elementHtmlP.appendChild(New);
+        this.elementHtmlP.insertAdjacentHTML("beforeend", " secondes.");
     },
     
     decompterSeconde: function() {
@@ -28,7 +69,7 @@ var Timer = {
 
         if(compteurMinute===0 && compteurSeconde===0) {
                             clearInterval(setInterval(decompterSeconde,1000));
-                            this.reservation.textContent= "Votre réservation a expirée."
+                            this.elementHtmlP.textContent= "Votre réservation a expirée."
         };
     },
     
@@ -41,11 +82,13 @@ var Timer = {
 
 
 //Creation objet
+
+var elementHtmlP = document.getElementById("reservation");
 var elementHtmlSeconde = document.getElementById("timerSeconde");
 var elementHtmlMinute = document.getElementById("timerMinute");
-var reservation= document.getElementById("reservation");
 
 var timer1 = Object.create(Timer);
-timer1.init(elementHtmlSeconde, elementHtmlMinute, reservation);
- 
+timer1.init();
+
+
 
