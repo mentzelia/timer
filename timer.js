@@ -24,52 +24,51 @@ reservation1.init(elementHtmlSection);
 
                                           
 //Objet timer
-var Timer = {    
+var Timer = { 
     init: function() {
-        this.elementHtmlP = elementHtmlP;
-        this.elementHtmlSeconde = elementHtmlSeconde;
-        this.elementHtmlMinute = elementHtmlMinute;
         
         
         this.ajoutMinuteDom();
         this.ajoutSecondeDom();
         this.decompterSeconde();
         this.intervalRecurrent();
-        
     },
     
     ajoutMinuteDom: function() {
         var New = document.createElement("span");
         New.id = "timerMinute";
         New.textContent = "20";
-        this.elementHtmlP.appendChild(New);
-        this.elementHtmlP.insertAdjacentHTML("beforeend", " minutes et ");
+        document.getElementById("reservation").appendChild(New);
+        document.getElementById("reservation").insertAdjacentHTML("beforeend", " minutes et ");
     },
     
     ajoutSecondeDom: function() {
         var New = document.createElement("span");
         New.id = "timerSeconde";
         New.textContent = "0";
-        this.elementHtmlP.appendChild(New);
-        this.elementHtmlP.insertAdjacentHTML("beforeend", " secondes.");
+        document.getElementById("reservation").appendChild(New);
+        document.getElementById("reservation").insertAdjacentHTML("beforeend", " secondes.");
     },
     
+    
     decompterSeconde: function() {
-        var compteurSeconde = Number(this.elementHtmlSeconde.textContent);
-        var compteurMinute = Number(this.elementHtmlMinute.textContent);
+        var seconde = document.getElementById("timerSeconde").textContent;
+        var minute = document.getElementById("timerMinute").textContent;
+        var compteurSeconde = Number(seconde);
+        var compteurMinute = Number(minute);
     
         if (compteurSeconde>0) {
-            this.elementHtmlSeconde.textContent= compteurSeconde-1;
+            document.getElementById("timerSeconde").textContent = compteurSeconde-1;
         } else {
             if(compteurSeconde===0) {
-                this.elementHtmlSeconde.textContent= compteurSeconde+59;
-                this.elementHtmlMinute.textContent= compteurMinute-1;
+                document.getElementById("timerSeconde").textContent= compteurSeconde+59;
+                document.getElementById("timerMinute").textContent= compteurMinute-1;
             } 
         };
 
         if(compteurMinute===0 && compteurSeconde===0) {
                             clearInterval(setInterval(decompterSeconde,1000));
-                            this.elementHtmlP.textContent= "Votre réservation a expirée."
+                            document.getElementById("reservation").textContent= "Votre réservation a expirée."
         };
     },
     
@@ -82,10 +81,6 @@ var Timer = {
 
 
 //Creation objet
-
-var elementHtmlP = document.getElementById("reservation");
-var elementHtmlSeconde = document.getElementById("timerSeconde");
-var elementHtmlMinute = document.getElementById("timerMinute");
 
 var timer1 = Object.create(Timer);
 timer1.init();
