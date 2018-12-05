@@ -37,7 +37,7 @@ var Timer = {
     ajoutMinuteDom: function() {
         var New = document.createElement("span");
         New.id = "timerMinute";
-        New.textContent = "20";
+        New.textContent = "1";
         document.getElementById("reservation").appendChild(New);
         document.getElementById("reservation").insertAdjacentHTML("beforeend", " minutes et ");
     },
@@ -52,10 +52,8 @@ var Timer = {
     
     
     decompterSeconde: function() {
-        var seconde = document.getElementById("timerSeconde").textContent;
-        var minute = document.getElementById("timerMinute").textContent;
-        var compteurSeconde = Number(seconde);
-        var compteurMinute = Number(minute);
+        var compteurSeconde = Number(document.getElementById("timerSeconde").textContent);
+        var compteurMinute = Number(document.getElementById("timerMinute").textContent);
     
         if (compteurSeconde>0) {
             document.getElementById("timerSeconde").textContent = compteurSeconde-1;
@@ -67,7 +65,7 @@ var Timer = {
         };
 
         if(compteurMinute===0 && compteurSeconde===0) {
-                            clearInterval(setInterval(decompterSeconde,1000));
+                            clearInterval(setInterval(this.decompterSeconde, 1000));
                             document.getElementById("reservation").textContent= "Votre réservation a expirée."
         };
     },
