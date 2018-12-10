@@ -25,27 +25,27 @@ reservation1.init(elementHtmlSection);
                                           
 //Objet timer
 var Timer = { 
-    init: function() {
+    init: function(minute, seconde) {
         
         
-        this.ajoutMinuteDom();
-        this.ajoutSecondeDom();
+        this.ajoutMinuteDom(minute);
+        this.ajoutSecondeDom(seconde);
         this.decompterSeconde();
         this.intervalRecurrent();
     },
     
-    ajoutMinuteDom: function() {
+    ajoutMinuteDom: function(minute) {
         var New = document.createElement("span");
         New.id = "timerMinute";
-        New.textContent = "1";
+        New.textContent = minute;
         document.getElementById("reservation").appendChild(New);
         document.getElementById("reservation").insertAdjacentHTML("beforeend", " minutes et ");
     },
     
-    ajoutSecondeDom: function() {
+    ajoutSecondeDom: function(seconde) {
         var New = document.createElement("span");
         New.id = "timerSeconde";
-        New.textContent = "0";
+        New.textContent = seconde;
         document.getElementById("reservation").appendChild(New);
         document.getElementById("reservation").insertAdjacentHTML("beforeend", " secondes.");
     },
@@ -81,7 +81,7 @@ var Timer = {
 //Creation objet
 
 var timer1 = Object.create(Timer);
-timer1.init();
+timer1.init(20, 0);
 
 
 
